@@ -1,151 +1,375 @@
-# Keeper App Documentation
+# React Todo App Documentation
 
-Welcome to the **Keeper App** project! This app is inspired by Google Keep and allows users to create, display, and delete notes. It is built using **React** and leverages **Material-UI** for styling and interactivity.
-
----
+## View Live : https://react-project-todolist-ashy.vercel.app/
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Components](#components)
-   - [App](#app-component)
-   - [Header](#header-component)
-   - [Footer](#footer-component)
-   - [CreateArea](#createarea-component)
-   - [Note](#note-component)
-4. [Dependencies](#dependencies)
-5. [Setup Instructions](#setup-instructions)
-6. [Project Structure](#project-structure)
-7. [How to Contribute](#how-to-contribute)
-8. [License](#license)
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Folder Structure](#folder-structure)
+- [Components](#components)
+- [Dependencies](#dependencies)
+- [License](#license)
 
 ---
 
 ## Overview
-
-The **Keeper App** is a simple note-taking application where users can:
-- Add a note with a title and content.
-- View all saved notes.
-- Delete notes they no longer need.
-
-This project is a beginner-friendly demonstration of state management in React and dynamic UI updates.
+This is a React-based "Todo App" that allows users to create, view, and delete notes. It mimics a simplified version of Google Keep, using Material-UI for icons and design components.
 
 ---
 
 ## Features
-
-- **Dynamic Note Addition**: Users can add notes with a title and content.
-- **Delete Notes**: Each note can be individually deleted.
-- **Interactive Animations**: Material-UI is used for enhanced user experience with animations and icons.
-- **Responsive Design**: The app dynamically adjusts the UI based on user interaction.
-
----
-
-## Components
-
-### App Component
-
-**Location**: `App.js`
-
-The `App` component manages the state of the notes and renders the main layout of the app. It passes state management functions (`addNote` and `deleteNote`) as props to child components.
+- **Add Notes**: Users can input a title and content to create a note.
+- **Dynamic Notes Display**: Displays a list of notes with unique content and titles.
+- **Delete Notes**: Each note can be deleted individually.
+- **Responsive UI**: Smooth transitions with Material-UI components.
 
 ---
 
-### Header Component
+## Installation
+### Prerequisites
+Ensure you have the following installed on your system:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-**Location**: `Header.js`
-
-The `Header` component displays the app's title with an icon for visual appeal.
-
-```jsx
-<HighlightIcon />Keeper
-```
-
----
-
-### Footer Component
-
-**Location**: `Footer.js`
-
-The `Footer` component displays the current year dynamically.
-
----
-
-### CreateArea Component
-
-**Location**: `CreateArea.js`
-
-The `CreateArea` component provides a form for users to create a new note. It includes:
-- An expanding textarea when clicked.
-- A floating action button (FAB) to submit the note.
-
----
-
-### Note Component
-
-**Location**: `Note.js`
-
-The `Note` component renders individual notes with a title, content, and delete button. Each note has a unique `id` used for deletion.
-
----
-
-## Dependencies
-
-- **React**: For building the UI.
-- **Material-UI**: For icons and interactive UI elements.
-  - `@mui/icons-material`
-  - `@mui/material`
-
----
-
-## Setup Instructions
-
-1. **Clone the repository**:
+### Steps
+1. Clone the repository:
    ```bash
    git clone https://github.com/iamrahul-l/react-todo-app.git
-   cd keeper-app
+   cd react-todo-app
    ```
-
-2. **Install dependencies**:
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-3. **Run the application**:
+3. Start the development server:
    ```bash
    npm start
    ```
-
-4. **Open the app**:
-   The app will be available at `http://localhost:5173`.
+4. Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
-## Project Structure
+## Usage
+1. On the homepage, click inside the input area to expand it.
+2. Enter a title and content for your note.
+3. Click the `+` button to add the note.
+4. View all added notes displayed below the input area.
+5. Click the delete icon on any note to remove it.
 
-```plaintext
-keeper-app/
+---
+
+## Folder Structure
+```
+react-todo-app/
 ├── public/
-│   └── index.html
+│   ├── index.html
+│   ├── manifest.json
+│   └── favicon.ico
 ├── src/
 │   ├── components/
-│   │   ├── App.js
-│   │   ├── Header.js
-│   │   ├── Footer.js
-│   │   ├── CreateArea.js
-│   │   └── Note.js
+│   │   ├── App.jsx
+│   │   ├── CreateArea.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   └── Note.jsx
+│   ├── index.css
 │   ├── index.js
 │   └── styles.css
+├── .gitignore
 ├── package.json
 └── README.md
 ```
 
 ---
 
-## How to Contribute
+## Components
+### `App`
+- Manages the state of the notes and handles the addition and deletion logic.
+- Renders `Header`, `CreateArea`, `Note`, and `Footer` components.
 
-1. **Fork the repository**.
-2. **Clone your fork**:
-   ```bash
-   git clone  https://github.com/iamrahul-l/react-todo-app.git
-   ```
+### `CreateArea`
+- Contains input fields for creating a note.
+- Expands the input field when clicked.
+- Triggers `onAdd` to add a new note.
+
+### `Note`
+- Displays the title and content of a note.
+- Contains a delete button to trigger `onDelete`.
+
+### `Header`
+- Displays the application title with a highlight icon.
+
+### `Footer`
+- Shows the current year in the footer.
+
+---
+
+## Dependencies
+The project uses the following dependencies:
+- **React**: Core library for building the UI.
+- **Material-UI**: Provides icons and design components.
+- **React-DOM**: Integration of React with the browser DOM.
+
+Install these dependencies with:
+```bash
+npm install @mui/material @mui/icons-material react react-dom
+```
+
+---
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+For more details, visit the GitHub repository: [React Todo App](https://github.com/iamrahul-l/react-todo-app) Here’s a detailed explanation of the code in the project, section by section:
+
+---
+
+### 1. **App Component**
+
+```javascript
+import React, { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
+
+function App() {
+  const [notes, setNotes] = useState([]);
+
+  function addNote(newNote) {
+    setNotes(prevNotes => {
+      return [...prevNotes, newNote];
+    });
+  }
+
+  function deleteNote(id) {
+    setNotes(prevNotes => {
+      return prevNotes.filter((noteItem, index) => {
+        return index !== id;
+      });
+    });
+  }
+
+  return (
+    <div>
+      <Header />
+      <CreateArea onAdd={addNote} />
+      {notes.map((noteItem, index) => {
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={noteItem.title}
+            content={noteItem.content}
+            onDelete={deleteNote}
+          />
+        );
+      })}
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+```
+
+#### Explanation:
+- **`useState([])`**: A state hook initializes an empty array to store the notes.
+- **`addNote` Function**: Adds a new note to the array using the spread operator.
+- **`deleteNote` Function**: Removes a note by filtering out the one with the matching `id`.
+- **Rendering Notes**: The `notes` array is mapped to render a `Note` component for each item, passing `id`, `title`, and `content` as props.
+- **Components**: Includes `Header`, `Footer`, `CreateArea` (for input), and `Note` (for displaying each note).
+
+---
+
+### 2. **CreateArea Component**
+
+```javascript
+import React, { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import { Fab } from "@mui/material";
+import { Zoom } from "@mui/material";
+
+function CreateArea(props) {
+  const [zoom, zoomout] = useState(false)
+
+  const [note, setNote] = useState({
+    title: "",
+    content: ""
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setNote(prevNote => {
+      return {
+        ...prevNote,
+        [name]: value
+      };
+    });
+  }
+
+  function submitNote(event) {
+    props.onAdd(note);
+    setNote({
+      title: "",
+      content: ""
+    });
+    event.preventDefault();
+  }
+
+  function zoomer() {
+    zoomout(true);
+  }
+
+  return (
+    <div>
+      <form className="create-note">
+        {zoom && (<input
+          name="title"
+          onChange={handleChange}
+          value={note.title}
+          placeholder="Title"
+        />)}
+
+        <textarea
+          name="content"
+          onChange={handleChange}
+          value={note.content}
+          placeholder="Take a note..."
+          rows={zoom ? 3 : 1}
+          onClick={zoomer}
+        />
+        <Zoom in={zoom}>
+          <Fab onClick={submitNote}><AddIcon /></Fab>
+        </Zoom>
+      </form>
+    </div>
+  );
+}
+
+export default CreateArea;
+```
+
+#### Explanation:
+- **State Management**:
+  - `zoom`: Tracks whether the input area should expand.
+  - `note`: Stores the title and content of the current note.
+- **`handleChange` Function**:
+  - Dynamically updates the `note` state based on the input field that triggered the event.
+  - Uses destructuring to access `name` and `value`.
+- **`submitNote` Function**:
+  - Sends the `note` to the `onAdd` prop (from `App`).
+  - Resets the `note` state to empty.
+- **Zoom and FAB (Floating Action Button)**:
+  - Expands the input field when clicked and enables the submit button.
+  - `Zoom` and `Fab` are Material-UI components for animations and buttons.
+
+---
+
+### 3. **Header Component**
+
+```javascript
+import React from "react";
+import HighlightIcon from "@mui/icons-material/Highlight";
+
+function Header() {
+  return (
+    <header>
+      <h1><HighlightIcon />Keeper</h1>
+    </header>
+  );
+}
+
+export default Header;
+```
+
+#### Explanation:
+- Displays the app's header with a title and an icon (`HighlightIcon` from Material-UI).
+- Uses `<header>` to semantically indicate the top section of the page.
+
+---
+
+### 4. **Footer Component**
+
+```javascript
+import React from "react";
+
+function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer>
+      <p>Copyright ⓒ {year}</p>
+    </footer>
+  );
+}
+
+export default Footer;
+```
+
+#### Explanation:
+- Dynamically displays the current year using JavaScript’s `Date` object.
+- Renders a simple copyright footer.
+
+---
+
+### 5. **Note Component**
+
+```javascript
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Fab } from "@mui/material";
+
+function Note(props) {
+  function handleClick() {
+    props.onDelete(props.id);
+  }
+
+  return (
+    <div className="note">
+      <h1>{props.title}</h1>
+      <p>{props.content}</p>
+      <Fab onClick={handleClick}><DeleteIcon /></Fab>
+    </div>
+  );
+}
+
+export default Note;
+```
+
+#### Explanation:
+- Accepts `title`, `content`, `id`, and `onDelete` as props.
+- Displays the note content and includes a delete button.
+- **`handleClick` Function**:
+  - Calls the `onDelete` function with the note's `id`, triggering the deletion in the parent (`App`).
+
+---
+
+### 6. **Index.js**
+
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+#### Explanation:
+- The entry point of the application.
+- Renders the `App` component inside the `div` with an ID of `root` (defined in `public/index.html`).
+
+---
+
+### 7. **Styling**
+The project uses CSS for styling:
+- **`index.css`**: Includes global styles.
+- **`styles.css`**: Adds custom styles for specific components (e.g., `.create-note`, `.note`).
+
+---
+
+This modular structure ensures that the app is easy to maintain and scale. Each component handles a specific task, and all state management is centralized in the `App` component.
